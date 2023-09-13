@@ -24,6 +24,7 @@ mongoose.connect(
     if (!error) {
       console.log("MongoDb Connection: ", process.env.MONGO_URL);
     } else {
+	    console.error(error.message);
       console.log("database not working");
     }
   }
