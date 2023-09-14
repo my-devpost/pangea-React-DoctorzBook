@@ -27,6 +27,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-transition-group": "^4.4.2",
+    "react-useanimations": "^2.0.6",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
@@ -60,5 +61,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8081"
+  "proxy": "http://localhost:8086"
 }

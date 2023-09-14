@@ -9,7 +9,6 @@ import Footer from "./Footer";
 import ServiceItem from "./ServiceItem";
 
 import ServicesData from "../../seeds/ServicesData";
-import Team from "./Team";
 
 const Landing = () => {
   const [navbar, setNavbar] = useState(false);
@@ -104,9 +103,6 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* Our Team */}
-      <div id="team"></div>
-      <Team />
 
       <div id="contact"></div>
       {/* Footer */}

@@ -46,11 +46,6 @@ const Navbar = () => {
               Services
             </a>
           </li>
-          <li class="navigation__item">
-            <a href="#team" class="navigation__link">
-              Our Team
-            </a>
-          </li>
           <div className="navigation__item--auth">
             <li class="navigation__item">
               <Link to="/login" class="navigation__link">
@@ -91,11 +86,6 @@ const Navbar = () => {
           <li className="nav__list-item">
             <a className="nav__list-link" href="#services">
               Services
-            </a>
-          </li>
-          <li className="nav__list-item">
-            <a className="nav__list-link" href="#team">
-              Our Team
             </a>
           </li>
         </ul>
