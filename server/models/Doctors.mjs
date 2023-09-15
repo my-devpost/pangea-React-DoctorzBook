@@ -1,4 +1,4 @@
-let mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const doctorSchema = mongoose.Schema(
   {
@@ -34,4 +34,6 @@ const doctorSchema = mongoose.Schema(
 
 doctorSchema.index({ location: "2dsphere" });
 
-module.exports = mongoose.model("Doctor", doctorSchema);
+// module.exports = mongoose.model("Doctor", doctorSchema);
+
+export default mongoose.model("Doctor", doctorSchema);

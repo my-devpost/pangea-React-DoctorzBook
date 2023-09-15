@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha — timeout 10000",
-    "start": "node server.js",
+    "start": "node server.mjs",
     "dev": "nodemon server.js --ignore client"
   },
   "keywords": [],

@@ -1,8 +1,8 @@
-var Joi = require("joi");
+import Joi from "joi";
 var emailregex =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-module.exports = {
+const validation = {
   login: {
     body: {
       email: Joi.string().email().regex(emailregex).required(),
@@ -27,3 +27,5 @@ module.exports = {
     },
   },
 };
+
+export default validation;

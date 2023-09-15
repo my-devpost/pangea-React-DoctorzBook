@@ -1,12 +1,12 @@
-const User = require("../models/User");
-const utility = require("../utils/utility");
-let jwt = require("jsonwebtoken");
-const Doctor = require("../models/Doctors");
+import User from "../models/User.mjs";
+import * as utility from "../utils/utility.mjs";
+import jwt from "jsonwebtoken";
+import Doctor from "../models/Doctors.mjs";
 
 /**
  * /api/getDoctors
  */
-module.exports.getDoctors = async (req, res) => {
+export const getDoctors = async (req, res) => {
   try {
     const doctors = await Doctor.find();
     // console.log("doctors", doctors);
@@ -17,7 +17,7 @@ module.exports.getDoctors = async (req, res) => {
   }
 };
 
-module.exports.getDoctorsSorted = async (req, res) => {
+export const getDoctorsSorted = async (req, res) => {
   try {
     const { long, lat } = req.body;
     console.log(long, lat);
@@ -40,7 +40,7 @@ module.exports.getDoctorsSorted = async (req, res) => {
   }
 };
 
-module.exports.getDoctor = async (req, res) => {
+export const getDoctor = async (req, res) => {
   try {
     const doctor = await Doctor.findById(req.params.id);
 
@@ -57,7 +57,7 @@ module.exports.getDoctor = async (req, res) => {
   }
 };
 
-module.exports.getDoctorByUserid = async (req, res) => {
+export const getDoctorByUserid = async (req, res) => {
   try {
     const doctor = await Doctor.findOne({ user_id: req.decoded.id });
 
@@ -73,3 +73,4 @@ module.exports.getDoctorByUserid = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+

@@ -1,6 +1,6 @@
-const express = require("express");
-const validation = require("../utils/validation");
-const { validate, Joi } = require("express-validation");
+import express from "express";
+import validation from "../utils/validation.mjs";
+import { validate, Joi } from "express-validation";
 
 const loginValidation = {
   body: Joi.object({
@@ -22,9 +22,9 @@ const registerValidation = {
 };
 
 // Controllers
-const authController = require("../controllers/auth");
-const doctorController = require("../controllers/doctor");
-const bookingController = require("../controllers/booking");
+import * as authController from "../controllers/auth.mjs";
+import * as doctorController from "../controllers/doctor.mjs";
+import * as bookingController from "../controllers/booking.mjs";
 
 const router = express.Router();
 
@@ -75,4 +75,6 @@ router.post(
   bookingController.cancelBooking
 );
 
-module.exports = router;
+// module.exports = router;
+
+export default router;

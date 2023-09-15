@@ -67,7 +67,7 @@ export const register = (formData) => async (dispatch) => {
 
 // login
 export const login = (email, password) => async (dispatch) => {
-  // console.log("login here", email, password);
+  console.log("login here", email, password);
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -84,7 +84,7 @@ export const login = (email, password) => async (dispatch) => {
       config
     );
 
-    // console.log(res);
+    console.log('============', res);
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -93,6 +93,7 @@ export const login = (email, password) => async (dispatch) => {
 
     // dispatch(loadUser());
   } catch (err) {
+    console.log('--------------', err);
     dispatch({
       type: LOGIN_FAIL,
     });

@@ -1,14 +1,22 @@
-const User = require("../models/User");
-const utility = require("../utils/utility");
-let jwt = require("jsonwebtoken");
-const Doctor = require("../models/Doctors");
-const Booking = require("../models/Booking");
-const { ObjectID } = require("mongodb");
+// const User = require("../models/User");
+// const utility = require("../utils/utility");
+// let jwt = require("jsonwebtoken");
+// const Doctor = require("../models/Doctors");
+// const Booking = require("../models/Booking");
+// const { ObjectID } = require("mongodb");
+
+import User from "../models/User.mjs";
+import * as utility from "../utils/utility.mjs";
+import jwt from "jsonwebtoken";
+import Doctor from "../models/Doctors.mjs";
+import Booking from "../models/Booking.mjs";
+import pkg from "mongodb";
+const { ObjectID } = "mongodb";
 
 /**
  * /api/getBookings
  */
-module.exports.getBookings = async (req, res) => {
+export const getBookings = async (req, res) => {
   try {
     const { userType, id } = req.decoded;
     let appointments = [];
@@ -72,7 +80,7 @@ module.exports.getBookings = async (req, res) => {
 /**
  * /api/getBooking/:id
  */
-module.exports.getBooking = async (req, res) => {
+export const getBooking = async (req, res) => {
   try {
     const booking = await Booking.find({
       doctor_id: new ObjectID(req.params.id),
@@ -120,7 +128,7 @@ module.exports.getBooking = async (req, res) => {
 /**
  * /api/bookSlot
  */
-module.exports.bookSlot = async (req, res) => {
+export const bookSlot = async (req, res) => {
   try {
     console.log("box", req.body);
 
@@ -153,7 +161,7 @@ module.exports.bookSlot = async (req, res) => {
 };
 
 // cancel booking
-module.exports.cancelBooking = async (req, res) => {
+export const cancelBooking = async (req, res) => {
   try {
     console.log("landed here");
     const check = {
@@ -174,3 +182,4 @@ module.exports.cancelBooking = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+

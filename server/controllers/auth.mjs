@@ -1,7 +1,7 @@
-const User = require("../models/User");
-const utility = require("../utils/utility");
-let jwt = require("jsonwebtoken");
-const Doctor = require("../models/Doctors");
+import User from "../models/User.mjs";
+import * as utility from "../utils/utility.mjs";
+import jwt from "jsonwebtoken";
+import Doctor from "../models/Doctors.mjs";
 
 /**
  * @api {post} /api/register create
@@ -21,7 +21,7 @@ const Doctor = require("../models/Doctors");
  *
  * @apiParamExample {json} response-example
  */
-module.exports.register = async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { email } = req.body;
     if (!email) {
@@ -112,7 +112,7 @@ module.exports.register = async (req, res) => {
  * @apiParam {string} email email of user
  * @apiParam {string} password password of user
  **/
-module.exports.login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     console.log(req.body.email, req.body.password);
     let check = {
@@ -133,6 +133,7 @@ module.exports.login = async (req, res) => {
             user: response,
           });
         } else {
+          console.log('>>>>>>>>>>>>>>>>');
           return res
             .status(404)
             .json({ message: "Invalid email id or password" });
@@ -152,7 +153,7 @@ module.exports.login = async (req, res) => {
  * @apiName authenticationMiddleWare
  * @apiGroup User
  */
-module.exports.authenticateMiddleware = async (req, res, next) => {
+export const authenticateMiddleware = async (req, res, next) => {
   let token = req.headers["x-access-token"];
   if (token) {
     jwt.verify(token, process.env.TOKEN_SECRET, async function (err, decoded) {
@@ -187,7 +188,7 @@ module.exports.authenticateMiddleware = async (req, res, next) => {
 /**
  * /api/auth
  */
-module.exports.getLoginDetails = async (req, res) => {
+export const getLoginDetails = async (req, res) => {
   try {
     // console.log(req.decoded);
     const user = await User.findById(req.decoded.id).select("-password");
@@ -198,3 +199,4 @@ module.exports.getLoginDetails = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+

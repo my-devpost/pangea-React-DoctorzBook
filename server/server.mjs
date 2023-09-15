@@ -1,12 +1,13 @@
-const express = require("express");
-const cors = require("cors");
-const helmet = require("helmet");
-const mongoose = require("mongoose");
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import mongoose from "mongoose";
 
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
-const indexRoutes = require("./routes/index.routes");
-const { ValidationError } = require("express-validation");
+import indexRoutes from "./routes/index.routes.mjs";
+import { ValidationError } from "express-validation";
 
 const app = express();
 
@@ -41,4 +42,4 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-module.exports = app;
+// module.exports = app;
