@@ -29,6 +29,7 @@
     "mongodb": "^3.6.10",
     "mongoose": "^5.13.14",
     "nodemon": "^2.0.12",
+    "pangea-node-sdk": "^2.2.1",
     "path": "^0.12.7",
     "volleyball": "^1.5.1"
   }

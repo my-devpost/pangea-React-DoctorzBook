@@ -3,6 +3,10 @@ import * as utility from "../utils/utility.mjs";
 import jwt from "jsonwebtoken";
 import Doctor from "../models/Doctors.mjs";
 
+// import { audit, embargo } from "../lib/pangea.mjs";
+import { AuditService, EmbargoService, PangeaConfig } from "pangea-node-sdk";
+
+
 /**
  * @api {post} /api/register create
  * @apiName create a User
@@ -81,6 +85,12 @@ export const register = async (req, res) => {
                   email: response.email,
                   userType: response.userType,
                 });
+
+                await new AuditService(process.env.PANGEA_AUDIT_TOKEN, new PangeaConfig({ domain: process.env.PANGEA_DOMAIN})).log({
+                  message: `User ${response.email} successfully created.`,
+                });
+      
+      
                 return res.status(200).json({
                   message: "user created successfully",
                   token: token,
@@ -114,19 +124,25 @@ export const register = async (req, res) => {
  **/
 export const login = async (req, res) => {
   try {
-    console.log(req.body.email, req.body.password);
+    console.log(req.body.email, req.body.password, req.headers, req.body.location);
     let check = {
       email: req.body.email ? req.body.email.toLowerCase() : req.body.email,
     };
     let response = await User.findOne(check);
     if (response) {
-      utility.check(req.body.password, response.password, (error, match) => {
+      utility.check(req.body.password, response.password, async (error, match) => {
         if (match) {
           let token = utility.jwtToken({
             id: response._id,
             email: response.email,
             userType: response.userType,
           });
+
+          console.log('server login >>> ', response, token, typeof audit, process.env.PANGEA_DOMAIN);
+          await new AuditService(process.env.PANGEA_AUDIT_TOKEN, new PangeaConfig({ domain: process.env.PANGEA_DOMAIN})).log({
+            message: `User ${response.email} successfully logged in.`,
+          });
+
           return res.status(200).json({
             message: "user found, token sent",
             token: token,

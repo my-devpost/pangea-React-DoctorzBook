@@ -6,6 +6,10 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
+console.log(process.env.TOKEN_SECRET);
+console.log('env token >>> ', process.env.PANGEA_AUDIT_TOKEN)
+
+
 import indexRoutes from "./routes/index.routes.mjs";
 import { ValidationError } from "express-validation";
 

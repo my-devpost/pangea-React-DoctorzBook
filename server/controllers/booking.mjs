@@ -13,6 +13,9 @@ import Booking from "../models/Booking.mjs";
 import pkg from "mongodb";
 const { ObjectID } = "mongodb";
 
+import { AuditService, EmbargoService, PangeaConfig } from "pangea-node-sdk";
+
+
 /**
  * /api/getBookings
  */
@@ -152,6 +155,13 @@ export const bookSlot = async (req, res) => {
 
     const newBooking = new Booking(check);
     const bookingData = await newBooking.save();
+
+
+    // await new AuditService(process.env.PANGEA_AUDIT_TOKEN, new PangeaConfig({ domain: process.env.PANGEA_DOMAIN})).log({
+    //   message: `User ${response.email} successfully created.`,
+    // });
+
+
     console.log([bookingData]);
     res.json([bookingData]);
   } catch (err) {
